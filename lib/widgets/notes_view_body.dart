@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: unnecessary_const
 
+import 'package:flutter/material.dart';
 import 'custom_app_bar.dart';
+import 'custom_note_item.dart';
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({super.key});
@@ -10,8 +12,10 @@ class NotesViewBody extends StatelessWidget {
     return const Scaffold(
         body: Column(
       children: [
-        CustomAppBar(),
+       CustomAppBar(),
+        NoteItem()
       ],
     ));
   }
 }
+

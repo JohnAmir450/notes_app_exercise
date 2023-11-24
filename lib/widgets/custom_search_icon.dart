@@ -14,7 +14,7 @@ class CustomIcon extends StatelessWidget {
         child: IconButton(
           icon: const Icon(
             Icons.search_rounded,
-            size: 30,
+            size: 25,
           ),
           onPressed: () {},
         ));

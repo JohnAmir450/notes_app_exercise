@@ -24,5 +24,3 @@ class CustomAppBar extends StatelessWidget {
     );
   }
 }
-
-
