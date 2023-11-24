@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'custom_app_bar.dart';
 import 'custom_note_item.dart';
+import 'notes_list_view.dart';
 
 class NotesViewBody extends StatelessWidget {
   const NotesViewBody({super.key});
@@ -10,12 +11,12 @@ class NotesViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        body: Column(
-      children: [
-       CustomAppBar(),
-        NoteItem()
-      ],
-    ));
+      body: Column(
+        children: [
+          CustomAppBar(),
+          NotesListView(),
+        ],
+      ),
+    );
   }
 }
-
