@@ -17,25 +17,24 @@ class _AddNoteButttomSheetState extends State<AddNoteButttomSheet> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(
-        child: BlocConsumer<AddNoteCubit, AddNoteState>(
-          listener: (context, state) {
-            if (state is AddNoteFailure) {
-              snackBar(context, color: Colors.red, text: 'Someting went wrong!, Please try againg later');
-            }
-            else if(state is AddNoteSuccess){
-              snackBar(context, text: 'Note added successfuly', color: Colors.green);
-            }
-          },
-          builder: (context, state) {
-            return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading ? true : false,
-              child: const AddNoteForm(),
-            );
-          },
-        ),
+      child: BlocConsumer<AddNoteCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteSuccess) {
+            Navigator.pop(context);
+            snackBar(context,
+                text: 'Note added successfuly', color: Colors.green);
+          } else if (state is AddNoteFailure) {
+            snackBar(context,
+                color: Colors.red,
+                text: 'Someting went wrong!, Please try againg later');
+          }
+        },
+        builder: (context, state) {
+          return const SingleChildScrollView(
+            child: AddNoteForm(),
+          );
+        },
       ),
     );
   }
-
 }
