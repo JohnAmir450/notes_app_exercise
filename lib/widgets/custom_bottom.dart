@@ -25,14 +25,16 @@ class CustomBottom extends StatelessWidget {
     );
   }
 
-  Text customAddNoteBottomText() {
-    return const Text(
-              'Add',
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black),
-            );
+  Center customAddNoteBottomText() {
+    return const Center(
+      child:  Text(
+                'Add',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black),
+              ),
+    );
   }
 
   Center circularProgressIndicator() {

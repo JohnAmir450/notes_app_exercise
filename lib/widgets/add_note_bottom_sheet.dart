@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app_exercise/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app_exercise/widgets/show_snack_bar.dart';
 import 'add_note_form.dart';
@@ -30,8 +29,14 @@ class _AddNoteButttomSheetState extends State<AddNoteButttomSheet> {
           }
         },
         builder: (context, state) {
-          return const SingleChildScrollView(
-            child: AddNoteForm(),
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading? true:false,
+            child: Padding(
+              padding:  EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: const SingleChildScrollView(
+                child: AddNoteForm(),
+              ),
+            ),
           );
         },
       ),
