@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app_exercise/constants.dart';
-
 import 'custom_bottom.dart';
 import 'custom_text_field.dart';
 
