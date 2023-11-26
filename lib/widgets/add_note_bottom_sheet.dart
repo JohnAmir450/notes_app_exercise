@@ -1,77 +1,41 @@
 import 'package:flutter/material.dart';
-import 'custom_bottom.dart';
-import 'custom_text_field.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:notes_app_exercise/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:notes_app_exercise/widgets/show_snack_bar.dart';
+import 'add_note_form.dart';
 
-class AddNoteButttomSheet extends StatelessWidget {
+class AddNoteButttomSheet extends StatefulWidget {
   const AddNoteButttomSheet({super.key});
 
   @override
+  State<AddNoteButttomSheet> createState() => _AddNoteButttomSheetState();
+}
+
+class _AddNoteButttomSheetState extends State<AddNoteButttomSheet> {
+  @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: SingleChildScrollView(
-        child: AddNoteForm(),
+        child: BlocConsumer<AddNoteCubit, AddNoteState>(
+          listener: (context, state) {
+            if (state is AddNoteFailure) {
+              snackBar(context, color: Colors.red, text: 'Someting went wrong!, Please try againg later');
+            }
+            else if(state is AddNoteSuccess){
+              snackBar(context, text: 'Note added successfuly', color: Colors.green);
+            }
+          },
+          builder: (context, state) {
+            return ModalProgressHUD(
+              inAsyncCall: state is AddNoteLoading ? true : false,
+              child: const AddNoteForm(),
+            );
+          },
+        ),
       ),
     );
   }
+
 }
-
-class AddNoteForm extends StatefulWidget {
-  const AddNoteForm({
-    super.key,
-  });
-
-  @override
-  State<AddNoteForm> createState() => _AddNoteFormState();
-}
-
-class _AddNoteFormState extends State<AddNoteForm> {
-  final GlobalKey<FormState>formKey=GlobalKey();
-  AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
- String? title,subTitle;
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autovalidateMode,
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          CustomTextField(
-            onsaved: (value){
-              title=value;
-            },
-            hint: 'Title',
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          CustomTextField(
-            onsaved: (value){
-              subTitle=value;
-            },
-            hint: 'Content',
-            maxLines: 5,
-          ),
-           const SizedBox(height: 40,),
-          CustomBottom(onTap: (){
-              if(formKey.currentState!.validate())
-              {
-                  formKey.currentState!.save();
-              }else{
-                autovalidateMode=AutovalidateMode.always;
-                setState(() {
-                  
-                });
-              }
-         },),
-         const SizedBox(height: 20,)
-        ],
-      ),
-    );
-  }
-}
-
-
