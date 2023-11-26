@@ -18,7 +18,7 @@ class CustomBottom extends StatelessWidget {
       child: const Center(
           child: Text(
         'Add',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600,color: Colors.black),
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,color: Colors.black),
       )),
     );
   }

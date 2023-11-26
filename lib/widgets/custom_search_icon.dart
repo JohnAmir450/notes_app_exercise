@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CustomIcon extends StatelessWidget {
-  const CustomIcon({
-    super.key,
+   CustomIcon({
+    super.key, required this.icon,this.onPressed
   });
-
+final IconData icon;
+void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,11 +13,11 @@ class CustomIcon extends StatelessWidget {
             color: Colors.white.withOpacity(.2),
             borderRadius: BorderRadius.circular(18)),
         child: IconButton(
-          icon: const Icon(
-            Icons.search_rounded,
+          icon:  Icon(
+           icon,
             size: 25,
           ),
-          onPressed: () {},
+          onPressed: onPressed,
         ));
   }
 }
