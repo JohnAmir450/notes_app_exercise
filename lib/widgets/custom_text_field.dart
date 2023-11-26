@@ -21,16 +21,16 @@ class CustomTextField extends StatelessWidget {
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle:const TextStyle(color:kPrimayColor ),
-        enabledBorder: buildBorder(Colors.white),
-        border: buildBorder(Colors.white),
+        hintStyle: const TextStyle(color:kPrimayColor ),
+        enabledBorder: buildBorder(),
+        border: buildBorder(),
         focusedBorder: buildBorder(kPrimayColor)
 
       ),
     );
   }
 
-  OutlineInputBorder buildBorder(Color color) => OutlineInputBorder(
+  OutlineInputBorder buildBorder([color]) => OutlineInputBorder(
       borderRadius: BorderRadius.circular(18),
-      borderSide:  BorderSide(color:color));
+      borderSide:  BorderSide(color:color ??Colors.white));
 }
