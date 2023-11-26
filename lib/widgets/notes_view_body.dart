@@ -9,11 +9,11 @@ class NotesViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return  const Scaffold(
       body: Column(
         children: [
           CustomAppBar(icon: Icons.search_rounded,title: 'Notes',),
-          const NotesListView(),
+          NotesListView(),
         ],
       ),
     );
