@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app_exercise/cubits/notes_cubit/cubit/notes_cubit.dart';
+import 'package:notes_app_exercise/models/note_model.dart';
 
 import '../views/edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({
-    super.key,
+    super.key, required this.noteModel,
   });
-
+final NoteModel noteModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,20 +24,20 @@ class NoteItem extends StatelessWidget {
           padding:
               const EdgeInsets.only(top: 24, bottom: 24, right: 16, left: 16),
           decoration: BoxDecoration(
-              color: const Color(0xffFFCC80),
+              color:  Color(noteModel.color),
               borderRadius: BorderRadius.circular(18)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: const Text(
-                  ' Flutter Tips',
-                  style: TextStyle(color: Colors.black, fontSize: 26),
+                title:  Text(
+                  noteModel.title,
+                  style: const TextStyle(color: Colors.black, fontSize: 26),
                 ),
                 subtitle: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text('Build your career with Tharawt Samy',
+                  child: Text(noteModel.subtitle,
                       style: TextStyle(
                           fontSize: 20, color: Colors.black.withOpacity(0.5))),
                 ),
@@ -43,11 +46,14 @@ class NoteItem extends StatelessWidget {
                     FontAwesomeIcons.trash,
                     color: Colors.black,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    noteModel.delete();
+                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                  },
                 ),
               ),
               Text(
-                'May 21,2021',
+                noteModel.date,
                 style: TextStyle(color: Colors.black.withOpacity(0.5)),
               )
             ],
