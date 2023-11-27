@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app_exercise/cubits/notes_cubit/cubit/notes_cubit.dart';
 import 'package:notes_app_exercise/models/note_model.dart';
+import 'package:notes_app_exercise/widgets/show_snack_bar.dart';
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
 
@@ -30,6 +31,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             widget.note.subtitle=subTitle??widget.note.subtitle;
             widget.note.save();
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+            snackBar(context, text: 'Note has been edited successfully', color: Colors.green);
             Navigator.pop(context);
           },
           title: 'Edit Note',

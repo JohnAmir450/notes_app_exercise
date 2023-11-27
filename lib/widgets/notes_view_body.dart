@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app_exercise/cubits/notes_cubit/cubit/notes_cubit.dart';
+import '../views/search_screen.dart';
 import 'custom_app_bar.dart';
 import 'notes_list_view.dart';
 
@@ -21,11 +22,13 @@ class _NotesViewBodyState extends State<NotesViewBody> {
   }
   @override
   Widget build(BuildContext context) {
-    return  const Scaffold(
+    return   Scaffold(
       body: Column(
         children: [
-          CustomAppBar(icon: Icons.search_rounded,title: 'Notes',),
-          NotesListView(),
+          CustomAppBar(icon: Icons.search_rounded,title: 'Notes',onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>const SearchScreen()));
+          },),
+          const NotesListView(),
         ],
       ),
     );
