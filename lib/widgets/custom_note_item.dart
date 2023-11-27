@@ -17,7 +17,7 @@ final NoteModel noteModel;
       padding: const EdgeInsets.symmetric(vertical:4.0,horizontal: 16),
       child: GestureDetector(
         onTap: (){
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>const EditView())
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> EditView(note: noteModel,))
         , (route) => true);
         },
         child: Container(
