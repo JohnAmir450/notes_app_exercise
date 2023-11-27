@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:notes_app_exercise/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:notes_app_exercise/models/note_model.dart';
 
+import 'colors_list_view.dart';
 import 'custom_bottom.dart';
 import 'custom_text_field.dart';
 
@@ -49,6 +50,8 @@ class _AddNoteFormState extends State<AddNoteForm> {
           const SizedBox(
             height: 40,
           ),
+          const ColorsListView(),
+          const SizedBox(height: 20,),
           BlocBuilder<AddNoteCubit, AddNoteState>(
             builder: (context, state) {
               return CustomBottom(
@@ -65,7 +68,6 @@ class _AddNoteFormState extends State<AddNoteForm> {
                         date: formattedDate.toString(),
                         color: Colors.blue.value);
                     BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
@@ -82,3 +84,4 @@ class _AddNoteFormState extends State<AddNoteForm> {
     );
   }
 }
+
