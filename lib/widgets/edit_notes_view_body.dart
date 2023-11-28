@@ -5,6 +5,7 @@ import 'package:notes_app_exercise/models/note_model.dart';
 import 'package:notes_app_exercise/widgets/show_snack_bar.dart';
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
+import 'edit_note_color_list_view.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({
@@ -27,11 +28,12 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         CustomAppBar(
           icon: Icons.done,
           onPressed: () {
-            widget.note.title=title??widget.note.title;
-            widget.note.subtitle=subTitle??widget.note.subtitle;
+            widget.note.title = title ?? widget.note.title;
+            widget.note.subtitle = subTitle ?? widget.note.subtitle;
             widget.note.save();
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-            snackBar(context, text: 'Note has been edited successfully', color: Colors.green);
+            snackBar(context,
+                text: 'Note has been edited successfully', color: Colors.green);
             Navigator.pop(context);
           },
           title: 'Edit Note',
@@ -57,8 +59,13 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             hint: widget.note.subtitle,
             maxLines: 5,
           ),
-        )
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        EditNoteColorsList(noteModel: widget.note,),
       ],
     );
   }
 }
+
